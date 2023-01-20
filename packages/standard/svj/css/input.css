@@ -1,0 +1,8 @@
+:root {
+    --am-block-max-width: 100%;
+    --am-block-margin-top: 0rem;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

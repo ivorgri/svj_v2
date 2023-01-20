@@ -6,14 +6,21 @@ bin/
 cache/
 lib/
 config/
-packages/
 shared/
 composer.json
 index.php
 phpunit.xml
 LICENSE.md
+packages/standard/dark
+packages/standard/dist
+packages/standard/js
+packages/standard/less
+packages/standard/light
+packages/standard/metatags
+packages/standard/templates
+packages/standard/*.*
 
 node_modules/
 
 #Allow
-packages/standard/svj/*
+!packages/standard/svj/*
