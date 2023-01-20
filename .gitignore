@@ -22,5 +22,7 @@ packages/standard/*.*
 
 node_modules/
 
+.vscode/
+
 #Allow
 !packages/standard/svj/*
