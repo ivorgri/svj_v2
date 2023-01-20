@@ -1,3 +1,4 @@
+#Ignore
 automad-master.zip
 
 automad/
@@ -13,3 +14,6 @@ phpunit.xml
 LICENSE.md
 
 node_modules/
+
+#Allow
+packages/standard/svj/*
