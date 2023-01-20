@@ -1,1 +1,13 @@
 automad-master.zip
+
+automad/
+bin/
+cache/
+lib/
+config/
+packages/
+shared/
+composer.json
+index.php
+phpunit.xml
+LICENSE.md
