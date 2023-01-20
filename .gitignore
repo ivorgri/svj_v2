@@ -11,3 +11,5 @@ composer.json
 index.php
 phpunit.xml
 LICENSE.md
+
+node_modules/
