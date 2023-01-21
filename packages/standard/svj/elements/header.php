@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl" style="scroll-behavior: smooth;">
 	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>@{ sitename }</title>
 		<link rel="stylesheet" href="/packages/@{ theme }/dist/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" type="text/css">
 		<link rel="apple-touch-icon" sizes="180x180" href="/shared/apple-touch-icon.png">
@@ -14,6 +15,5 @@
 	</head>
 	<body>
 		<header>
-				<@ /navbar.php @>
-			</div>
+			<@ /navbar.php @>
 		</header>
