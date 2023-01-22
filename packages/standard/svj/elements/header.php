@@ -13,7 +13,7 @@
 		<!-- <meta name="theme-color" content="#37b048"/> -->
 		<meta name="theme-color" content="#ffffff">
 	</head>
-	<body>
-		<header>
+	<body class="w-screen overflow-x-hidden">
+		<header class="w-full overflow-x-hidden">
 			<@ /navbar.php @>
 		</header>
