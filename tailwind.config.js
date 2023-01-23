@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./packages/standard/svj/**/*.{php,html,js}"],
+  content: ["./packages/svj/svj_theme/**/*.{php,html,js}"],
   theme: {
     extend: {},
   },
