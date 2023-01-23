@@ -1,6 +1,6 @@
 <nav
 	id="navbar" role="navigation" aria-label="main navigation"
-    class="items-center justify-end h-screen w-screen hidden p-6">
+    class="bg-white fixed z-20 items-center justify-end h-screen w-screen hidden p-6">
 	<ul class="flex flex-col items-end">
         <li class="cursor-pointer no-underline text-3xl hover:opacity-30 focus:opacity-30 p-6">
             <a class="menu-item-primary menu-item-has-children" href="#">
@@ -45,7 +45,7 @@
     id="toggle-menu"
     type="button"
 	aria-label="Open/close menu"
-    class="fixed bottom-[5%] right-[5%] z-10">
+    class="fixed bottom-0 right-0 p-1 z-30">
     <span id="toggle-menu-open">Menu <></span>
     <span id="toggle-menu-close" class="hidden">Close X</span>
 </button>
