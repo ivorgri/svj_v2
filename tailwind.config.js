@@ -4,14 +4,39 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-				'revicons': ['revicons'],
-				'lato': ['Lato'],
-				'logo': ['"Oooh Baby"'],
-			},
+        'revicons': ['revicons'],
+        'lato': ['Lato'],
+        'logo': ['"Oooh Baby"'],
+      },
       colors: {
         'svj-green': '#37b048',
+        'svj-green-button-hover': '#319d40',
+        'svj-yellow': '#edeae1'
+      },
+      boxShadow: {
+        '3xl': '0 8px 6px -6px rgba(0, 0, 0, 0.1)',
+      },
+      spacing: {
+        '128': '32rem',
+        '30': '7.5rem',
+        'header': '7.5rem',
+        'slider': 'calc(100vh - 7.5rem)',
+        'mobile-header': '5rem',
+        'mobile-slider': 'calc(100vh - 5rem)'
+      },
+      scrollMargin: {
+        '30': '7.5rem',
+        'header': '10rem',
+        'mobile-header': '5.5rem'
+      },
+      gridTemplateRows: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+      },
+      gridRowEnd: {
+        '11': '11',
+        '13': '13',
       }
-    },
+    }
   },
   plugins: [],
 }
