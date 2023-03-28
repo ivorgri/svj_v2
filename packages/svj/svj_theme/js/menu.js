@@ -1,139 +1,59 @@
-function toggleMenu(openMenu) {
-    openMenu = !openMenu;
-    toggleMenuOpenSpan = document.getElementById('toggle-menu-open');
-    toggleMenuCloseSpan = document.getElementById('toggle-menu-close');
+function toggleMenu(openMobileMenu) {
+    openMobileMenu = !openMobileMenu;
+    toggleMobileMenuOpenMenu = document.getElementById('toggle-mobile-open-menu');
+    toggleMobileMenuCloseMenu = document.getElementById('toggle-mobile-close-menu');
     navBar = document.getElementById('navbar');
-    if (openMenu) {
-        toggleMenuCloseSpan.classList.add('block');
-        toggleMenuCloseSpan.classList.remove('hidden');
-        toggleMenuOpenSpan.classList.add('hidden');
-        toggleMenuOpenSpan.classList.remove('block');
+    if (openMobileMenu) {
+        toggleMobileMenuCloseMenu.classList.add('block');
+        toggleMobileMenuCloseMenu.classList.remove('hidden');
+        toggleMobileMenuOpenMenu.classList.add('hidden');
+        toggleMobileMenuOpenMenu.classList.remove('block');
         navBar.classList.remove('hidden');
         navBar.classList.add('flex');
     } else {
-        toggleMenuOpenSpan.classList.add('block');
-        toggleMenuOpenSpan.classList.remove('hidden');
-        toggleMenuCloseSpan.classList.add('hidden');
-        toggleMenuCloseSpan.classList.remove('block');
+        toggleMobileMenuOpenMenu.classList.add('block');
+        toggleMobileMenuOpenMenu.classList.remove('hidden');
+        toggleMobileMenuCloseMenu.classList.add('hidden');
+        toggleMobileMenuCloseMenu.classList.remove('block');
         navBar.classList.add('hidden');
         navBar.classList.remove('flex');
     }
-    return openMenu;
+    return openMobileMenu;
 }
 
-async function switchVisibleMenuItems (currentVisibleMenuItems,newVisibleMenuItems,switchMenuItemsDelay) {
-    return new Promise(function(resolve) {
-        currentItemsLength = currentVisibleMenuItems.length;
-        newItemsLength = newVisibleMenuItems.length;
-
-        currentVisibleMenuItemsParentListItems = [];
-        for(let index = 0; index < currentVisibleMenuItems.length; index++) {
-            let currentVisibleMenuItem = currentVisibleMenuItems[index];
-            currentVisibleMenuItemParentListItem = currentVisibleMenuItem.parentElement;
-            currentVisibleMenuItemsParentListItems.push(currentVisibleMenuItemParentListItem);
-        }
-
-        newVisibleMenuItemsParentListItems = [];
-        for(let index = 0; index < newVisibleMenuItems.length; index++) {
-            let newVisibleMenuItem = newVisibleMenuItems[index];
-            newVisibleMenuItemParentListItem = newVisibleMenuItem.parentElement;
-            newVisibleMenuItemsParentListItems.push(newVisibleMenuItemParentListItem);
-        }  
-
-        // if there is no current and new (so effectively open menu), show new THEN return new
-        if (currentItemsLength === 0 && newItemsLength !== 0) {
-            gsap
-                .fromTo(newVisibleMenuItemsParentListItems, 
-                    { xPercent: 100, opacity:0, display: 'block' }, 
-                    { xPercent: 0, opacity: 1, duration: switchMenuItemsDelay,
-                        clearProps: 'opacity',
-                        onComplete: (resolve,newVisibleMenuItems) => {
-                            console.log("Done opening menu")
-                            resolve(newVisibleMenuItems)
-                        },
-                        onCompleteParams: [resolve,newVisibleMenuItems]
-                    })
-        }
-
-        // if there is current and new (so effectively switching items), remove current THEN show new THEN return new
-        if (currentItemsLength !== 0 && newItemsLength !== 0) {
-            gsap
-                .fromTo(currentVisibleMenuItemsParentListItems, 
-                    { xPercent: 0, opacity: 1 }, 
-                    { xPercent: 100, opacity:0, display: 'none', duration: switchMenuItemsDelay,
-                        clearProps: 'opacity', 
-                        onComplete: (resolve,newVisibleMenuItems,newVisibleMenuItemsParentListItems) => {
-                            console.log("Done removing current items")
-                            gsap
-                            .fromTo(newVisibleMenuItemsParentListItems, 
-                                { xPercent: 100, opacity: 0, display: 'block' }, 
-                                { xPercent: 0, opacity:1, duration: switchMenuItemsDelay, 
-                                    clearProps: 'opacity', 
-                                    onComplete: (resolve,newVisibleMenuItems) => {
-                                        console.log("Done showing new items")
-                                        resolve(newVisibleMenuItems)
-                                    },
-                                    onCompleteParams: [resolve,newVisibleMenuItems]
-                                })
-                        },
-                        onCompleteParams: [resolve,newVisibleMenuItems,newVisibleMenuItemsParentListItems]
-                    })
-        }
-
-        // if there is current and no new (so effectively closing menu), remove current THEN return new
-        if (currentItemsLength !== 0 && newItemsLength === 0) {
-            gsap
-                .fromTo(currentVisibleMenuItemsParentListItems, 
-                    { xPercent: 0, opacity: 1 }, 
-                    { xPercent: 100, opacity:0, display: 'none', duration: switchMenuItemsDelay,
-                        clearProps: 'opacity', 
-                        onComplete: (resolve,newVisibleMenuItems) => {
-                            console.log("Done closing menu")
-                            resolve(newVisibleMenuItems)
-                        },
-                        onCompleteParams: [resolve,newVisibleMenuItems]
-                    })
-        }
-    })
+function toggleMenuResize(previousInnerWidth) {
+    const mdBreakpoint = 768;
+    const currentInnerWidth = window.innerWidth;
+    if (previousInnerWidth < mdBreakpoint && currentInnerWidth >= mdBreakpoint) {
+        return [false,window.innerWidth];
+    } else if (previousInnerWidth >= mdBreakpoint && currentInnerWidth < mdBreakpoint) {
+        return [true,window.innerWidth];
+    } else if (currentInnerWidth >= mdBreakpoint) {
+        return [false,window.innerWidth];
+    } else {
+        return [true,window.innerWidth];
+    }
 }
 
-(function () {
-    const switchMenuItemsDelay = 0.5;
-    let openMenu = false;
-    let visibleMenuItems = [];
+(function() {
+    let openMobileMenu = false;
+    toggleMobileMenuButton = document.getElementById('toggle-mobile-menu');
+    navBarItems = document.getElementsByClassName('navbar-item');
 
-    primaryMenuItems = document.getElementsByClassName('menu-item-primary');
-
-    toggleMenuButton = document.getElementById('toggle-menu');
-    toggleMenuButton.addEventListener("click", async () => {
-        if (!openMenu) {
-            openMenu = toggleMenu(openMenu);
-            visibleMenuItems = await switchVisibleMenuItems([],primaryMenuItems,switchMenuItemsDelay)
-        } else {
-            visibleMenuItems = await switchVisibleMenuItems(visibleMenuItems,[],switchMenuItemsDelay)
-            openMenu = toggleMenu(openMenu);
-        }
+    toggleMobileMenuButton.addEventListener("click", () => {
+        openMobileMenu = toggleMenu(openMobileMenu);
     });
 
-    const menuItemsWithChildren = document.getElementsByClassName('menu-item-has-children');
-    for(let index = 0; index < menuItemsWithChildren.length; index++) {
-        menuItemWithChildren = menuItemsWithChildren[index];
-        menuItemWithChildren.addEventListener("click", async (event) => {
-            clickedMenuItemWithChildren = event.target;
-            clickedMenuItemWithChildrenParentListItem = clickedMenuItemWithChildren.parentElement;
-            secondaryMenuList = clickedMenuItemWithChildrenParentListItem.nextElementSibling;
-            secondaryMenuItems = secondaryMenuList.getElementsByClassName('menu-item-secondary');
-            visibleMenuItems = await switchVisibleMenuItems(visibleMenuItems,secondaryMenuItems,switchMenuItemsDelay)
+    for(let index = 0; index < navBarItems.length; index++) {
+        navBarItem = navBarItems[index];
+        navBarItem.addEventListener("click", () => {
+            openMobileMenu = toggleMenu(openMobileMenu);
         });
     }
 
-    const secondaryMenuBackButtons = document.getElementsByClassName('secondary-menu-back-button');
-    for(let index = 0; index < secondaryMenuBackButtons.length; index++) {
-        secondaryMenuBackButton = secondaryMenuBackButtons[index];
-        secondaryMenuBackButton.addEventListener("click", async (event) => {
-            secondaryMenuBackButton = event.target;
-            console.log(secondaryMenuBackButton);
-            visibleMenuItems = await switchVisibleMenuItems(visibleMenuItems,primaryMenuItems,switchMenuItemsDelay)
-        })
-    }
+    let previousInnerWidth = 0;
+    window.addEventListener("resize", () => {
+        [openMobileMenu,previousInnerWidth] = toggleMenuResize(previousInnerWidth);
+        openMobileMenu = toggleMenu(openMobileMenu);
+    });
 })();
