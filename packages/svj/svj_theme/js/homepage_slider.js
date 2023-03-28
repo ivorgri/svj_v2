@@ -1,6 +1,6 @@
 function repositionBackground (currentBackgroundIndex,startPosition,increment,imageSwitchDuration){
     backgroundImage = document.getElementById('slider-background');
-    const newX = startPosition + (currentBackgroundIndex * increment);
+    const newX = startPosition - (currentBackgroundIndex * increment);
     gsap.to(backgroundImage,
         {
             x: newX,
@@ -14,12 +14,15 @@ function switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,sup
         opacity:1
     },{
         opacity: 0,
+        x: -20,
         duration: imageSwitchDuration,
         onComplete: (newVisibleSupervisorImage) => {
             gsap.fromTo(newVisibleSupervisorImage,{
-                opacity:0
+                opacity:0,
+                x: 20
             },{
                 opacity: 1,
+                x: 0,
                 duration: imageSwitchDuration
             })
         },
@@ -32,7 +35,7 @@ function switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,sup
     let currentBackgroundIndex = 0;
     let maxIndex = 2;
     let increment = 100;
-    let startPosition = -100;
+    let startPosition = 100;
     const imageSwitchDuration = 0.5;
 
     let supervisorImages = document.getElementsByClassName('slider-supervisor-image');
@@ -44,17 +47,13 @@ function switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,sup
     sliderRightButton = document.getElementById('slider-right-button');
 
     sliderLeftButton.addEventListener("click", async () => {
-        console.log("Left!")
         currentBackgroundIndex === 0 ? currentBackgroundIndex = maxIndex : currentBackgroundIndex--;
-        console.log(currentBackgroundIndex);
         repositionBackground(currentBackgroundIndex,startPosition,increment,imageSwitchDuration);
         visibleSupervisorImage = switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage, supervisorImages,imageSwitchDuration);
     });
 
     sliderRightButton.addEventListener("click", async () => {
-        console.log("Right!")
         currentBackgroundIndex === maxIndex ? currentBackgroundIndex = 0 : currentBackgroundIndex++;
-        console.log(currentBackgroundIndex);
         repositionBackground(currentBackgroundIndex,startPosition,increment,imageSwitchDuration);
         visibleSupervisorImage = switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,supervisorImages,imageSwitchDuration);
     });
