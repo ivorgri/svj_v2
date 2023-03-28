@@ -1,5 +1,8 @@
 const moveProgress = () => {
     progressSlider = document.getElementById("progress-slider");
+    if (!progressSlider) {
+        return;
+    }
     
     interval = setInterval(() => {
         progressWidth += 0.5;
@@ -51,11 +54,17 @@ function sliderInit() {
     });
     
     const previousSlideButton = document.getElementById('previous-slide-button');
+    if (!previousSlideButton) {
+        return;
+    }
     previousSlideButton.addEventListener("click", () => {
         previousSlide();
     });
 
     const nextSlideButton = document.getElementById('next-slide-button');
+    if (!nextSlideButton) {
+        return;
+    }
     nextSlideButton.addEventListener("click", function () {
         nextSlide();
     });
