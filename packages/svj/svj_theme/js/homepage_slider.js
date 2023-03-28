@@ -1,60 +1,72 @@
-function repositionBackground (currentBackgroundIndex,startPosition,increment,imageSwitchDuration){
-    backgroundImage = document.getElementById('slider-background');
-    const newX = startPosition - (currentBackgroundIndex * increment);
-    gsap.to(backgroundImage,
-        {
-            x: newX,
-            duration: imageSwitchDuration * 2
-        })
+const moveProgress = () => {
+    progressSlider = document.getElementById("progress-slider");
+    
+    interval = setInterval(() => {
+        progressWidth += 0.5;
+        if (progressWidth > 101) {
+            progressWidth = 0;
+            clearInterval(interval);
+            nextSlide();
+            setTimeout(() => {
+                moveProgress(waitForStartingProgress);
+            }, waitForStartingProgress)
+        } else {
+            progressSlider.style.setProperty('--progress-slider-width',`${progressWidth}%`);
+        }
+    }, 18);
 }
 
-function switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,supervisorImages,imageSwitchDuration) {
-    const newVisibleSupervisorImage = supervisorImages[currentBackgroundIndex];
-    gsap.fromTo(visibleSupervisorImage,{
-        opacity:1
-    },{
-        opacity: 0,
-        x: -20,
-        duration: imageSwitchDuration,
-        onComplete: (newVisibleSupervisorImage) => {
-            gsap.fromTo(newVisibleSupervisorImage,{
-                opacity:0,
-                x: 20
-            },{
-                opacity: 1,
-                x: 0,
-                duration: imageSwitchDuration
-            })
-        },
-        onCompleteParams: [newVisibleSupervisorImage]
-    })
-    return newVisibleSupervisorImage;
+const previousSlide = () => {
+    progressWidth = 0;
+    let maxSlideIndex = slides.length - 1;
+    if (currentSlideIndex === 0) {
+        currentSlideIndex = maxSlideIndex;
+    } else {
+        currentSlideIndex--;
+    }
+
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${100 * (index - currentSlideIndex)}%)`;
+    });
 }
 
-(function () {
-    let currentBackgroundIndex = 0;
-    let maxIndex = 2;
-    let increment = 100;
-    let startPosition = 100;
-    const imageSwitchDuration = 0.5;
+const nextSlide = () => {
+    progressWidth = 0;
+    let maxSlideIndex = slides.length - 1;
+    if (currentSlideIndex === maxSlideIndex) {
+        currentSlideIndex = 0;
+    } else {
+        currentSlideIndex++;
+    }
 
-    let supervisorImages = document.getElementsByClassName('slider-supervisor-image');
-    let visibleSupervisorImage = supervisorImages[currentBackgroundIndex];
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${100 * (index - currentSlideIndex)}%)`;
+    });
+}
 
-    repositionBackground(currentBackgroundIndex,startPosition,increment,imageSwitchDuration);
-
-    sliderLeftButton = document.getElementById('slider-left-button');
-    sliderRightButton = document.getElementById('slider-right-button');
-
-    sliderLeftButton.addEventListener("click", async () => {
-        currentBackgroundIndex === 0 ? currentBackgroundIndex = maxIndex : currentBackgroundIndex--;
-        repositionBackground(currentBackgroundIndex,startPosition,increment,imageSwitchDuration);
-        visibleSupervisorImage = switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage, supervisorImages,imageSwitchDuration);
+function sliderInit() {
+    slides = document.querySelectorAll(".slide");
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${index * 100}%)`;
+    });
+    
+    const previousSlideButton = document.getElementById('previous-slide-button');
+    previousSlideButton.addEventListener("click", () => {
+        previousSlide();
     });
 
-    sliderRightButton.addEventListener("click", async () => {
-        currentBackgroundIndex === maxIndex ? currentBackgroundIndex = 0 : currentBackgroundIndex++;
-        repositionBackground(currentBackgroundIndex,startPosition,increment,imageSwitchDuration);
-        visibleSupervisorImage = switchSupervisorImage(currentBackgroundIndex,visibleSupervisorImage,supervisorImages,imageSwitchDuration);
+    const nextSlideButton = document.getElementById('next-slide-button');
+    nextSlideButton.addEventListener("click", function () {
+        nextSlide();
     });
+}
+
+const waitForStartingProgress = 1500;
+let progressWidth = 0;
+let slides = [];
+let currentSlideIndex = 0;
+
+(function() {
+    sliderInit();
+    moveProgress();
 })();
