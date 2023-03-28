@@ -51,6 +51,9 @@ function updateFormTimer() {
     const emailInput = document.getElementById("email")
     const messageInput = document.getElementById("message")
     const honeyInputs = document.getElementsByClassName("honnie")
+    if (!form || !submitButton) {
+        return;
+    }
 
     for(let index = 0; index < honeyInputs.length; index++) {
         honeyInput = honeyInputs[index];
