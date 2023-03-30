@@ -1,4 +1,4 @@
-<@ if @{ :origUrl } = '/your-supervisor' @>
+<@ if @{ :origUrl } = '/your-supervisors' @>
     <section id="@{ :origUrl |
         replace(
             '/\\//',
@@ -8,14 +8,15 @@
         <div class="w-11/12 flex flex-col flex-wrap items-center gap-10 md:w-10/12 md:grid md:grid-cols-12 md:auto-rows-auto md:gap-y-0 md:gap-x-6 md:items-start md:justify-items-center">
             <h2 class="w-full text-5xl text-svj-green font-thin capitalize md:col-span-12">
                 <!-- @{ title } -->
-                Jouw Supervisor
+                Supervisors
             </h2>
-            <div class="w-full md:col-span-12 py-6">
+            <@ ../elements/your_supervisors_carousel.php @>
+            <!-- <div class="w-full md:col-span-12 py-6">
                 <ul class="w-full flex gap-8 justify-center">
                     <@ ../elements/yoursupervisor_card.php @>
                     <@ ../elements/yoursupervisor_card.php @>
                 <ul>
-            </div>
+            </div> -->
             <!-- <@ ../elements/yoursupervisor_image.php @>
             <div class="w-full flex flex-col justify-center px-2 gap-5 md:col-start-5 md:col-end-12 md:row-start-2 md:row-end-13 md:px-0 md:w-full md:mt-10">
                 <h3 class="text-4xl text-black font-semibold">@{ supervisor_name }</h3>

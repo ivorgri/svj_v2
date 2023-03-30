@@ -6,7 +6,7 @@
 	} @>
 	<@ foreach in pagelist @>
 		<@ sections/slider.php @>
-		<@ sections/yoursupervisor.php @>
+		<@ sections/your_supervisors.php @>
 		<@ sections/ouroffer.php @>
 		<@ sections/contactus.php @>
 		<@ sections/tarrifs.php @>
