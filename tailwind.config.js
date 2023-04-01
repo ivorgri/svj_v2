@@ -10,7 +10,6 @@ module.exports = {
       },
       colors: {
         'svj-green': '#37b048',
-        'svj-green-button-hover': '#319d40',
         'svj-yellow': '#edeae1',
         'svj-primary': '#6096B4',
         'svj-secondary': '#93BFCF',
