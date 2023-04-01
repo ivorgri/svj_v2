@@ -1,6 +1,6 @@
         <footer id="footer" class="w-full flex flex-col items-center mt-24
             md:flex-row">
-            <div class="w-full bg-svj-yellow text-black text-xl flex items-center justify-center h-32
+            <div class="w-full bg-svj-quaternary text-black text-xl flex items-center justify-center h-32
             md:w-1/2">
                 <span>&copy; 2022<?php $currentYear = date("Y");
                         if ($currentYear != 2022) {
@@ -8,7 +8,7 @@
                         }
                     ?> <strong>Supervisie voor Jou</strong>. Alle Rechten Voorbehouden</span>
             </div>
-            <div class="w-full bg-svj-green text-white text-xl flex items-center justify-center h-32
+            <div class="w-full bg-svj-primary text-white text-xl flex items-center justify-center h-32
             md:w-1/2 md:flex">
                 <a href="
                 <@ if @{ :origUrl } @>

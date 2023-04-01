@@ -37,7 +37,7 @@
 				</div>
 				<div class="col-span-2 flex-row justify-end items-start uppercase hidden 
 					md:flex">
-					<span class="border-b border-transparent hover:text-svj-green hover:border-svj-green transition duration-200 ease-in-out">
+					<span class="border-b border-transparent hover:text-svj-primary hover:border-svj-primary transition duration-200 ease-in-out">
 						<i class="icon_mail mr-1"></i>
 						<a href="mailto:info@supervisievoorjou.nl">info@supervisievoorjou.nl</a>
 					</span>
@@ -48,7 +48,7 @@
 				id="toggle-mobile-menu"
 				type="button"
 				aria-label="Open/sluit mobiel menu"
-				class="inline-flex items-center justify-center p-2 rounded-full text-white z-20 bg-svj-green
+				class="inline-flex items-center justify-center p-2 rounded-full text-white z-20 bg-svj-primary
 				focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
 				fixed bottom-[5%] right-[5%]
 				md:invisible"

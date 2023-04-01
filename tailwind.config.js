@@ -11,7 +11,11 @@ module.exports = {
       colors: {
         'svj-green': '#37b048',
         'svj-green-button-hover': '#319d40',
-        'svj-yellow': '#edeae1'
+        'svj-yellow': '#edeae1',
+        'svj-primary': '#6096B4',
+        'svj-secondary': '#93BFCF',
+        'svj-tertiary': '#BDCDD6',
+        'svj-quaternary': '#EEE9DA'
       },
       boxShadow: {
         '3xl': '0 8px 6px -6px rgba(0, 0, 0, 0.1)',

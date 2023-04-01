@@ -1,5 +1,5 @@
 <?php defined('AUTOMAD') or die('Direct access not permitted!'); ?>
-<div class="w-full md:col-start-2 md:col-end-12 bg-svj-green flex flex-col p-5 items-center text-white">
+<div class="w-full md:col-start-2 md:col-end-12 bg-svj-primary flex flex-col p-5 items-center text-white">
     <div id="supervisor-tag-filter" v-scope="SupervisorTagFilter()" class="flex items-center flex-col gap-2"></div>
     <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
 
@@ -20,7 +20,7 @@
         <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 items-center gap-4">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
                 class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center">
-                <a :href="'' + supervisor.url">
+                <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2">
                     <img src="https://version2.supervisievoorjou.nl/packages/svj/svj_theme/images/supervisor1.png"
                     class="max-h-[35vh] h-[35vh] block mx-auto"
                     :class="store.selectedSupervisorTags.length === 0
@@ -33,7 +33,7 @@
                     <h3 class="text-5xl">{{ supervisor.name }}</h3>
                     <ul class="flex flex-row">
                         <li v-for="tag in supervisor.tags" :id="tag"
-                            class="py-2 px-4 shadow-md no-underline rounded-full border border-white bg-svj-green font-sans font-semibold text-sm mr-2 select-none flex items-center">
+                            class="py-2 px-4 shadow-md no-underline rounded-full border border-white bg-svj-primary font-sans font-semibold text-sm mr-2 select-none flex items-center">
                             {{ tag }}
                         </li>
                     </ul>

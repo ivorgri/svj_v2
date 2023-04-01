@@ -12,7 +12,7 @@
 		} @>
 		<@ foreach in pagelist @>
 			<li class="navbar-item
-				border-b-4 border-transparent text-xl transition duration-200 ease-in-out hover:border-svj-green focus:border-svj-green">
+				border-b-4 border-transparent text-xl transition duration-200 ease-in-out hover:border-svj-primary focus:border-svj-primary">
 				<a class="text-slate-400 hover:text-black focus:text-black" href="@{ :origUrl |
 					replace(
 						'/\\//',
