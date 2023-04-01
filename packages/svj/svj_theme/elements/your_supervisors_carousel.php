@@ -8,7 +8,7 @@
         <ul v-if="store.supervisorTags.length > 0" class="flex text-gray-400">
             <li v-for="supervisorTag in store.supervisorTags">
                 <input :id="supervisorTag" type="checkbox" :value="supervisorTag" v-model="store.selectedSupervisorTags" hidden>
-                <label :for="supervisorTag" class="py-2 px-4 shadow-md no-underline rounded-full bg-white font-sans font-semibold text-sm hover:text-black focus:outline-none mr-2 select-none flex items-center"
+                <label :for="supervisorTag" class="py-2 px-4 shadow-md no-underline rounded-full bg-white font-sans font-semibold text-sm hover:text-black focus:outline-none mr-2 select-none flex items-center cursor-pointer"
                 :class="store.selectedSupervisorTags.indexOf(supervisorTag) !== -1 ? 'text-black' : ''">
                 <span v-if="store.selectedSupervisorTags.indexOf(supervisorTag) !== -1" class="inline-flex items-center justify-center w-4 h-4 mr-2 rounded-full border border-gray-400 font-revicons">&times;</span><span>{{ supervisorTag }}</span>
             </label>
