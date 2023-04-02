@@ -5,7 +5,7 @@
 
     <template id="supervisor-tag-filter-template">
         <span class="text-2xl underline font-bold">Ik ben op zoek naar</span>
-        <ul v-if="store.supervisorTags.length > 0" class="flex text-gray-400">
+        <ul v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
             <li v-for="supervisorTag in store.supervisorTags">
                 <input :id="supervisorTag" type="checkbox" :value="supervisorTag" v-model="store.selectedSupervisorTags" hidden>
                 <label :for="supervisorTag" class="py-2 px-4 shadow-md no-underline rounded-full bg-white font-sans font-semibold text-sm hover:text-black focus:outline-none mr-2 select-none flex items-center cursor-pointer"
@@ -17,7 +17,7 @@
     </template>
 
     <template id="supervisor-carousel-supervisors">
-        <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 items-center gap-4">
+        <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-4 justify-center">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
                 class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center">
                 <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2">
@@ -31,7 +31,7 @@
                             : 'grayscale'
                         )" alt="">
                     <h3 class="text-5xl">{{ supervisor.name }}</h3>
-                    <ul class="flex flex-row">
+                    <ul class="flex flex-row flex-wrap gap-2 md:gap-1">
                         <li v-for="tag in supervisor.tags" :id="tag"
                             class="py-2 px-4 shadow-md no-underline rounded-full border border-white bg-svj-primary font-sans font-semibold text-sm mr-2 select-none flex items-center">
                             {{ tag }}

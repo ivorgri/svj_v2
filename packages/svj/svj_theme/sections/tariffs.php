@@ -2,15 +2,17 @@
 <section class="w-screen flex flex-col items-center mb-24 scroll-mt-mobile-header 
         md:scroll-mt-header">
     <div class="w-10/12 gap-7 flex flex-row flex-wrap">
-        GETTING HERE
         <@ newPagelist { 
             type: 'children', 
             offset: 3,
             limit: 1,
-            context: '@{ url }'
+            context: '/'
         } @>
         <@ foreach in pagelist @>
             <h2 class="w-full text-5xl text-svj-primary font-thin mb-6">@{ title }</h2>
+            <@ if @{ :origUrl } = '/tariffs' @>
+                <div class="w-full text-xl text-black flex flex-col gap-8 md:pl-10 border-b">@{ +main }</div>
+            <@ end @>
             <@ newPagelist { 
                 type: 'children',
                 context: '@{ url }'
