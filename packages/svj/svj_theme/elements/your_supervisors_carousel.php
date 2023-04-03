@@ -17,9 +17,9 @@
     </template>
 
     <template id="supervisor-carousel-supervisors">
-        <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-4 justify-center">
+        <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-6 justify-center">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
-                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center"
+                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center w-1/4 p-4 h-full"
                 :class="store.selectedSupervisorTags.length === 0
                         ? '' 
                         : (
@@ -28,17 +28,9 @@
                             : 'order-last'
                         )">
                 <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2">
-                    <img src="https://version2.supervisievoorjou.nl/packages/svj/svj_theme/images/supervisor1.png"
-                    class="max-h-[35vh] h-[35vh] block mx-auto"
-                    :class="store.selectedSupervisorTags.length === 0
-                        ? '' 
-                        : (
-                            store.selectedSupervisorTags.every(tag => supervisor.tags.includes(tag))
-                            ? ''
-                            : 'grayscale'
-                        )" alt="">
+                    <@ your_supervisor_carousel_image.php @>
                     <h3 class="text-5xl">{{ supervisor.name }}</h3>
-                    <ul class="flex flex-row flex-wrap gap-2 md:gap-1">
+                    <ul class="flex flex-row flex-wrap gap-2 md:gap-1 justify-center">
                         <li v-for="tag in supervisor.tags" :id="tag"
                             class="py-2 px-4 shadow-md no-underline rounded-full border border-white bg-svj-primary font-sans font-semibold text-sm mr-2 select-none flex items-center">
                             {{ tag }}
@@ -56,9 +48,23 @@
         } @>
         let supervisors = [
         <@ foreach in pagelist @>
-            {'name':'@{ title }','tags':'@{ tags }','url':'@{ url }'},
+            {'name':'@{ title }','tags':'@{ tags }','url':'@{ url }','files':[]},
         <@ end @>
         ]
+
+        let files = [];
+        let supervisorIndex = 0;
+        <@ foreach in pagelist @>
+            files = [];
+            files = [
+            <@ foreach in filelist @>
+                {'file':'@{ :file }','caption':'@{ :caption }','width':'@{ :width }','height':'@{ :height }'},
+            <@ end @>
+            ]
+
+            supervisorIndex = @{ :i } -1;
+            supervisors[supervisorIndex].files = files;
+        <@ end @>
         
         let supervisorTagsSet = new Set();
         supervisors.forEach((supervisor,index) => {
