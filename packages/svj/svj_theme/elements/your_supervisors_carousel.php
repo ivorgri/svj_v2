@@ -19,7 +19,14 @@
     <template id="supervisor-carousel-supervisors">
         <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-4 justify-center">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
-                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center">
+                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center"
+                :class="store.selectedSupervisorTags.length === 0
+                        ? '' 
+                        : (
+                            store.selectedSupervisorTags.every(tag => supervisor.tags.includes(tag))
+                            ? 'order-first'
+                            : 'order-last'
+                        )">
                 <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2">
                     <img src="https://version2.supervisievoorjou.nl/packages/svj/svj_theme/images/supervisor1.png"
                     class="max-h-[35vh] h-[35vh] block mx-auto"
