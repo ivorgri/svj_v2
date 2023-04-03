@@ -1,7 +1,7 @@
         <footer id="footer" class="w-full flex flex-col items-center mt-24
             md:flex-row">
             <div class="w-full bg-svj-tertiary text-black text-xl flex items-center justify-center h-32
-            md:w-1/2">
+            md:w-1/2 text-center">
                 <span>&copy; 2022<?php $currentYear = date("Y");
                         if ($currentYear != 2022) {
                             echo "-".$currentYear;
