@@ -1,4 +1,4 @@
-import { createApp, reactive } from "https://unpkg.com/petite-vue?module";
+import { createApp, reactive } from "/packages/svj/svj_theme/js/petite_vue.js";
 
 const store = reactive({
     supervisorTags: supervisorTags,
