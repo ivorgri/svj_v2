@@ -7,7 +7,7 @@
     
     <img
         v-if="supervisor.main_image"
-        class="border rounded-full block mx-auto"
+        class="border rounded-full block mx-auto w-full"
         :class="store.selectedSupervisorTags.length === 0
         ? '' 
         : (

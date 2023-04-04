@@ -19,7 +19,7 @@
     <template id="supervisor-carousel-supervisors">
         <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-6 justify-center">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
-                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center w-1/4 p-4 h-full"
+                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center w-full md:w-1/4 p-4 md:h-full"
                 :class="store.selectedSupervisorTags.length === 0
                         ? '' 
                         : (
