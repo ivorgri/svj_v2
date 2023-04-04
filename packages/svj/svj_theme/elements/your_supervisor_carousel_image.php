@@ -16,8 +16,8 @@
             : 'grayscale'
         )"           
         :src="supervisor.main_image.file"
-        alt="supervisor.main_image.caption"
-        width="supervisor.main_image.width"
-        height="supervisor.main_image.height"
+        :alt="supervisor.main_image.caption"
+        :width="supervisor.main_image.width"
+        :height="supervisor.main_image.height"
     />
 </picture>
