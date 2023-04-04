@@ -1,42 +1,23 @@
 <?php defined('AUTOMAD') or die('Direct access not permitted!'); ?>
 <picture>
-    <@ filelist { glob: @{ images | def ('*.webp') }, order: desc } @>
-    <@ if @{ :filelistCount } @>
-        <@ foreach in filelist @>
-            <source 
-                srcset="@{ :file }"
-                media="(min-width: @{ :file | replace('/\.\*-\(\\\d\*\).webp/','$1') }px)"
-                type="image/webp"
-            />
-        <@ end @>
-    <@ end @>
-    <@ filelist { glob: @{ images | def ('*.jpg, *.jpeg, *.png') }, order: desc } @>
-    <@ if @{ :filelistCount } @>
-        <@ foreach in filelist @>
-            <source 
-                srcset="@{ :file }"
-                media="(min-width: @{ :width }px)"
-                type="image/jpeg"
-            />
-        <@ end @>
-    <@ end @>
-    <@ filelist { glob: @{ images | def ('02-*.jpg, 02-*.jpeg, 02-*.png') }, order: desc } @>
-    <@ if @{ :filelistCount } @>
-        <@ foreach in filelist @>
-            <img 
-                class="border rounded-full block mx-auto"
-                :class="store.selectedSupervisorTags.length === 0
-                ? '' 
-                : (
-                    store.selectedSupervisorTags.every(tag => supervisor.tags.includes(tag))
-                    ? ''
-                    : 'grayscale'
-                )"           
-                src="@{ :file }"
-                alt="@{ :caption }"
-                width="@{ :width }"
-                height="@{ :height }"
-            />
-        <@ end @>
-    <@ end @>
+    <source v-for="supervisor_image in supervisor.images"
+        :srcset="supervisor_image.file"
+        :media="supervisor_image.media"
+        :type="supervisor_image.type"/>
+    
+    <img
+        v-if="supervisor.main_image"
+        class="border rounded-full block mx-auto"
+        :class="store.selectedSupervisorTags.length === 0
+        ? '' 
+        : (
+            store.selectedSupervisorTags.every(tag => supervisor.tags.includes(tag))
+            ? ''
+            : 'grayscale'
+        )"           
+        :src="supervisor.main_image.file"
+        alt="supervisor.main_image.caption"
+        width="supervisor.main_image.width"
+        height="supervisor.main_image.height"
+    />
 </picture>

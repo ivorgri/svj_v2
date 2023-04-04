@@ -3,20 +3,6 @@
     <div id="supervisor-tag-filter" v-scope="SupervisorTagFilter()" class="flex items-center flex-col gap-2"></div>
     <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
 
-    <@ newPagelist { 
-            type: 'children', 
-            context: '/your-supervisors' 
-    } @>
-    <@ foreach in pagelist @>
-        <@ filelist { glob: @{ images | def ('*.webp,*.jpg,*.jpeg,*.png') }, order: desc } @>
-        <@ foreach in filelist @>
-            File: @{ :file }
-            @{ file }
-        <@ end @>
-    <@ end @>
-
-    
-
     <template id="supervisor-tag-filter-template">
         <span class="text-2xl underline font-bold">Ik ben op zoek naar</span>
         <ul v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
@@ -62,22 +48,41 @@
         } @>
         let supervisors = [
         <@ foreach in pagelist @>
-            {'name':'@{ title }','tags':'@{ tags }','url':'@{ url }','files':[]},
+            {'name':'@{ title }','tags':'@{ tags }','url':'@{ url }','images':[]},
         <@ end @>
         ]
 
-        let files = [];
+        let images = [];
+        let main_image;
         let supervisorIndex = 0;
         <@ foreach in pagelist @>
             <@ filelist { glob: @{ images | def ('*.webp,*.jpg,*.jpeg,*.png') }, order: desc } @>
-            files = [
+            images = [
             <@ foreach in filelist @>
                 {'file':'@{ :file }','caption':'@{ :caption }','width':'@{ :width }','height':'@{ :height }'},
             <@ end @>
             ]
 
+            main_image = undefined;
+            
+            images.forEach((image,index) => {
+                let extension = image.file.slice((image.file.lastIndexOf(".") - 1 >>> 0) + 2);
+                if (extension == "webp") {
+                    image.type = "image/webp";
+                } else if (extension == "jpg" || extension == "jpeg") {
+                    image.type = "image/jpg";
+                } else if (extension == "png") {
+                    image.type = "image/png";
+                }
+                image.media = `(min-width: ${image.width}px)`;
+                if (!main_image || parseInt(image.width) > parseInt(main_image.width)) {
+                    main_image = image;
+                }
+            })
+
             supervisorIndex = @{ :i } -1;
-            supervisors[supervisorIndex].files = files;
+            supervisors[supervisorIndex].images = images;
+            supervisors[supervisorIndex].main_image = main_image;
         <@ end @>
 
         let supervisorTagsSet = new Set();
