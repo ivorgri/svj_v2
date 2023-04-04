@@ -3,6 +3,20 @@
     <div id="supervisor-tag-filter" v-scope="SupervisorTagFilter()" class="flex items-center flex-col gap-2"></div>
     <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
 
+    <@ newPagelist { 
+            type: 'children', 
+            context: '/your-supervisors' 
+    } @>
+    <@ foreach in pagelist @>
+        <@ filelist { glob: @{ images | def ('*.webp,*.jpg,*.jpeg,*.png') }, order: desc } @>
+        <@ foreach in filelist @>
+            File: @{ :file }
+            @{ file }
+        <@ end @>
+    <@ end @>
+
+    
+
     <template id="supervisor-tag-filter-template">
         <span class="text-2xl underline font-bold">Ik ben op zoek naar</span>
         <ul v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
@@ -55,7 +69,7 @@
         let files = [];
         let supervisorIndex = 0;
         <@ foreach in pagelist @>
-            files = [];
+            <@ filelist { glob: @{ images | def ('*.webp,*.jpg,*.jpeg,*.png') }, order: desc } @>
             files = [
             <@ foreach in filelist @>
                 {'file':'@{ :file }','caption':'@{ :caption }','width':'@{ :width }','height':'@{ :height }'},
@@ -65,7 +79,7 @@
             supervisorIndex = @{ :i } -1;
             supervisors[supervisorIndex].files = files;
         <@ end @>
-        
+
         let supervisorTagsSet = new Set();
         supervisors.forEach((supervisor,index) => {
             const splitTags = supervisor.tags.split(",").map(function(item) {
