@@ -46,8 +46,11 @@ function toggleMenuResize(previousInnerWidth) {
 
     for(let index = 0; index < navBarItems.length; index++) {
         navBarItem = navBarItems[index];
-        navBarItem.addEventListener("click", () => {
-            openMobileMenu = toggleMenu(openMobileMenu);
+        navBarItem.addEventListener("click", (event) => {
+            console.log(event.target);
+            if (event.target.id !== "menu-next-link") {
+                openMobileMenu = toggleMenu(openMobileMenu);
+            }
         });
     }
 
