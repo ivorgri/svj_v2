@@ -44,7 +44,7 @@
 				</div>
 				<@ /navbar.php @>
 			</div>
-			<button
+			<!-- <button
 				id="toggle-mobile-menu"
 				type="button"
 				aria-label="Open/sluit mobiel menu"
@@ -83,5 +83,5 @@
 						d="M6 18L18 6M6 6l12 12"
 					/>
 				</svg>
-			</button>
+			</button> -->
 		</header>

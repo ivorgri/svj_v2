@@ -38,8 +38,11 @@ module.exports = {
       gridRowEnd: {
         '11': '11',
         '13': '13',
+      },
+      rotate: {
+        '270': '270deg'
       }
     }
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
