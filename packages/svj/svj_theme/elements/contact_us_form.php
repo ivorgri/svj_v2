@@ -13,9 +13,9 @@
     </div>
     <form method="POST" id="contact-form" class="text-xl flex flex-wrap gap-5">
         <fieldset class="flex flex-wrap items-center justify-left gap-5">
-            <input type="text" name="name" id="name" class="border border-black/10 p-2 grow" placeholder="@{ placeholder_name }" required>
-            <input type="email" name="email" id="email" class="border border-black/10 p-2 grow-[3]" placeholder="@{ placeholder_email }" required>
-            <textarea name="message" id="message" rows="8" cols="20" class="border border-black/10 p-2 w-full" placeholder="@{ placeholder_message }" required></textarea>
+            <input type="text" name="name" id="name" class="border border-black/10 p-2 grow bg-white" placeholder="@{ placeholder_name }" required>
+            <input type="email" name="email" id="email" class="border border-black/10 p-2 grow-[3] bg-white" placeholder="@{ placeholder_email }" required>
+            <textarea name="message" id="message" rows="8" cols="20" class="border border-black/10 p-2 w-full bg-white" placeholder="@{ placeholder_message }" required></textarea>
         </fieldset>
         <fieldset>
             <label class="honnieone honnie" for="name-first"></label>
