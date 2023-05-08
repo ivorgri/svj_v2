@@ -19,6 +19,7 @@ packages/standard/light
 packages/standard/metatags
 packages/standard/templates
 packages/standard/*.*
+backup_images/
 
 node_modules/
 
