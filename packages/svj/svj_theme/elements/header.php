@@ -44,44 +44,4 @@
 				</div>
 				<@ /navbar.php @>
 			</div>
-			<!-- <button
-				id="toggle-mobile-menu"
-				type="button"
-				aria-label="Open/sluit mobiel menu"
-				class="inline-flex items-center justify-center p-2 rounded-full text-white z-20 bg-svj-primary
-				focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
-				fixed bottom-[5%] right-[5%]
-				md:invisible"
-			>
-				<svg
-					id="toggle-mobile-open-menu"
-					class="block h-12 w-12 p-1"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h16"
-					/>
-				</svg>
-				<svg
-					id="toggle-mobile-close-menu"
-					class="hidden h-12 w-12 p-1"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"
-					/>
-				</svg>
-			</button> -->
 		</header>
