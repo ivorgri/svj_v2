@@ -13,7 +13,8 @@
                 <h2 class="w-full text-5xl text-svj-primary font-thin mb-6">@{ title }</h2>
                 <@ newPagelist { 
                     type: 'children',
-                    context: '@{ url }'
+                    context: '@{ :origUrl }',
+                    excludeHidden: false
                 } @>
                 <@ foreach in pagelist @>
                     <div class="border-b grid grid-rows-2 grid-cols-12 text-lg w-full pb-5 md:text-xl">
@@ -36,7 +37,8 @@
                 <div class="w-full text-xl text-black flex flex-col gap-8 md:pl-10 border-b pb-4">@{ +main }</div>
                 <@ newPagelist { 
                     type: 'children',
-                    context: '@{ url }'
+                    context: '@{ :origUrl }', 
+                    excludeHidden: false
                 } @>
                 <@ foreach in pagelist @>
                     <div class="border-b grid grid-rows-2 grid-cols-12 text-lg w-full pb-5 md:text-xl">
