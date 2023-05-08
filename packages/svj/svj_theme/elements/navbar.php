@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar fixed pb-1 md:h-full flex-col items-center w-full uppercase col-span-4 justify-end
+<nav id="navbar" class="navbar fixed md:h-full flex-col items-center w-full uppercase col-span-4 justify-end
 		md:flex md:relative
 		xl:col-span-2" role="navigation" aria-label="main navigation">
 	<@ newPagelist { 
@@ -45,8 +45,8 @@
 			context: '/' 
 		} @>
 		<ul class="menu menu-horizontal px-1">
-			<li>
-				<a class="hover:bg-svj-secondary focus:bg-svj-secondary" href="/">
+			<li class="border-b-4 border-white rounded-none hover:border-svj-secondary hover:bg-white focus:border-svj-secondary focus:bg-white group">
+				<a class="group-hover:bg-white group-focus:bg-white" href="/">
 					Home
 				</a>
 			</li>
@@ -56,8 +56,8 @@
 					context: '@{ :origUrl }' 
 				} @>
 				<@ if @{ :pagelistDisplayCount } > 0 @>
-					<li tabindex="0">
-						<a class="hover:bg-svj-secondary focus:bg-svj-secondary" href="@{ :origUrl }">
+					<li tabindex="0" class="border-b-4 border-white rounded-none hover:border-svj-secondary hover:bg-white focus:border-svj-secondary focus: focus:bg-white group">
+						<a class="group-hover:bg-white group-focus:bg-white" href="@{ :origUrl }">
 							<@ if @{ navigation_title } @>
 								@{ navigation_title }
 							<@ else @>
@@ -69,10 +69,10 @@
 							type: 'children', 
 							context: '@{ :origUrl }' 
 						} @>
-						<ul class="p-2 shadow-2xl">
+						<ul class="p-2">
 							<@ foreach in pagelist @>
-								<li class="bg-white">
-									<a class="hover:bg-svj-secondary focus:bg-svj-secondary" href="@{ :origUrl }">
+								<li class="bg-white border-b-4 border-white rounded-none hover:border-svj-secondary hover:bg-white focus:border-svj-secondary focus:bg-white group">
+									<a class="group-hover:bg-white group-focus:bg-white" href="@{ :origUrl }">
 										<@ if @{ navigation_title } @>
 											@{ navigation_title }
 										<@ else @>
@@ -84,8 +84,8 @@
 						</ul>
 					</li>
 				<@ else @>
-					<li>
-						<a class="hover:bg-svj-secondary focus:bg-svj-secondary" href="@{ :origUrl }">
+					<li class="bg-white border-b-4 border-white rounded-none hover:border-svj-secondary hover:bg-white focus:border-svj-secondary focus:bg-white group">
+						<a class="group-hover:bg-white group-focus:bg-white" href="@{ :origUrl }">
 							<@ if @{ navigation_title } @>
 								@{ navigation_title }
 							<@ else @>
