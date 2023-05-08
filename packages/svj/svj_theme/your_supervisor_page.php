@@ -10,7 +10,7 @@
         <div class="w-full flex flex-col justify-center px-2 gap-5 md:col-start-5 md:col-end-12 md:row-start-2 md:row-end-13 md:px-0 md:w-full md:mt-10">
             <h3 class="text-4xl text-black font-semibold">@{ supervisor_name }</h3>
             <h4 class="text-3xl text-svj-secondary">@{ supervisor_title }</h4>
-            <div class="flex flex-col gap-5 text-xl md:text-2xl font-thin">
+            <div class="flex flex-col gap-5 text-xl md:text-2xl font-thin text-gray-800	">
                 @{ +main }
                 <ul class="flex flex-col gap-2 pl-5">
                     <@ newPagelist { 
@@ -34,9 +34,8 @@
                     context: '@{ url }/registrations' 
                 } @>
                 <@ foreach in pagelist @>
-                    <li class="flex flex-row gap-2 items-center">
-                        <span>—</span>
-                        <span>@{ title }</span>
+                    <li class="flex flex-row gap-2">
+                        <span>— @{ title }</span>
                     </li>
                 <@ end @>
         </div>

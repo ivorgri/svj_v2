@@ -20,7 +20,7 @@
             <h2 class="text-5xl text-svj-primary font-thin capitalize">
                 @{ title }
             </h2>
-            <div class="text-xl text-black flex flex-col gap-8 md:pl-10">@{ landing_page_text }</div>
+            <div class="text-xl text-black flex flex-col gap-8 md:pl-10">@{ +landing_page }</div>
             <span class="text-lg text-svj-primary font-semibold self-end pr-10 md:pr-32">@{ subtitle }</span>
         <@ end @>
     </div>
