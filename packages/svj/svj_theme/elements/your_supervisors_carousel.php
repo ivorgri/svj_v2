@@ -4,7 +4,7 @@
     <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
 
     <template id="supervisor-tag-filter-template">
-        <span class="text-2xl underline font-bold">Ik ben op zoek naar</span>
+        <span class="text-2xl underline font-bold">Ik ben op zoek naar supervisie voor:</span>
         <ul v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
             <li v-for="supervisorTag in store.supervisorTags">
                 <input :id="supervisorTag" type="checkbox" :value="supervisorTag" v-model="store.selectedSupervisorTags" hidden>
