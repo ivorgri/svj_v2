@@ -1,5 +1,5 @@
 <?php defined('AUTOMAD') or die('Direct access not permitted!'); ?>
-<div class="w-full md:col-start-2 md:col-end-12 bg-svj-primary flex flex-col p-5 items-center text-white">
+<div class="w-full md:col-start-1 md:col-end-13 bg-svj-primary flex flex-col p-5 items-center text-white">
     <div id="supervisor-tag-filter" v-scope="SupervisorTagFilter()" class="flex items-center flex-col gap-2"></div>
     <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
 
