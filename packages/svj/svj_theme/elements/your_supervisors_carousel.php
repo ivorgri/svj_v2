@@ -5,12 +5,12 @@
 
     <template id="supervisor-tag-filter-template">
         <span class="text-2xl underline font-bold">Ik zoek een supervisor voor:</span>
-        <ul v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
-            <li v-for="supervisorTag in store.supervisorTags">
+        <ul id="supervisor-tag-list" v-if="store.supervisorTags.length > 0" class="flex flex-wrap gap-2 md:gap-1 text-gray-400">
+            <li class="supervisor-tag" v-for="supervisorTag in store.supervisorTags">
                 <input :id="supervisorTag" type="checkbox" :value="supervisorTag" v-model="store.selectedSupervisorTags" hidden>
-                <label :for="supervisorTag" class="py-2 px-4 shadow-md no-underline rounded-full bg-white font-sans font-semibold text-sm hover:text-black focus:outline-none mr-2 select-none flex items-center cursor-pointer"
+                <label :for="supervisorTag" class="py-2 px-4 shadow-md no-underline rounded-full bg-white font-sans font-semibold text-sm hover:text-black focus:outline-none  select-none flex items-center cursor-pointer"
                 :class="store.selectedSupervisorTags.indexOf(supervisorTag) !== -1 ? 'text-black' : ''">
-                <span v-if="store.selectedSupervisorTags.indexOf(supervisorTag) !== -1" class="inline-flex items-center justify-center w-4 h-4 mr-2 rounded-full border border-gray-400 font-revicons">&times;</span><span>{{ supervisorTag }}</span>
+                <span v-if="store.selectedSupervisorTags.indexOf(supervisorTag) !== -1" class="inline-flex items-center justify-center w-4 h-4 rounded-full border border-gray-400 font-revicons">&times;</span><span>{{ supervisorTag }}</span>
             </label>
             </li>
         </ul>
@@ -39,6 +39,79 @@
                 </a>
             </li>
         </ul>
+        <script>
+            // https://stackoverflow.com/questions/50439298/sort-elements-in-multiple-flexbox-rows-according-to-their-width-size
+            function getElementWidth(element) {
+                const style = window.getComputedStyle(element);
+                return element.offsetWidth;
+            }
+
+            function getBestFit(elements, availableSpace) {
+                let minAvailableSpace = availableSpace;
+                let bestFitIndex = -1;
+                
+                elements.forEach((element, i) => {
+                    if (element.used) {
+                    return;
+                    }
+                    
+                    const elementAvailableSpace = availableSpace - element.width;
+                    
+                    if (elementAvailableSpace >= 0 && elementAvailableSpace < minAvailableSpace) {
+                    minAvailableSpace = elementAvailableSpace;
+                    bestFitIndex = i;
+                    }
+                });
+                
+                return bestFitIndex;
+            }
+
+            function getFirstNotUsed(elements) {
+                for (let element of elements) {
+                    if (!element.used) {
+                    return element;
+                    }
+                }
+            }
+
+            const categoryList = document.getElementById('supervisor-tag-list');
+            const totalSpace = categoryList.clientWidth;
+            const items = Array.from(categoryList.children).map((element) => {
+                return {
+                    element,
+                    used: false,
+                    width: getElementWidth(element),
+                };
+            });
+            const totalItems = items.length;
+
+            const firstItem = items[0];
+            const sortedElements = [firstItem.element];
+
+            firstItem.used = true;
+            let availableSpace = totalSpace - firstItem.width;
+
+            for (let i = 1; i < totalItems; ++i) {
+                const bestFitIndex = getBestFit(items, availableSpace);
+                
+                let item;
+                
+                if (bestFitIndex === -1) {
+                    item = getFirstNotUsed(items);
+                    availableSpace = totalSpace - item.width;
+                } else {
+                    item = items[bestFitIndex];
+                    availableSpace -= item.width;
+                }
+                
+                sortedElements.push(item.element);  
+                item.used = true;
+            }
+
+            sortedElements.forEach((element) => {          
+                categoryList.appendChild(element);
+            });
+        </script>
     </template>
 
     <script>
@@ -98,5 +171,4 @@
         const supervisorTags = Array.from(supervisorTagsSet);
     </script>
     <script src="/packages/@{theme}/js/your_supervisors_carousel.js" type="module"></script>
-
 </div>
