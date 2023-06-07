@@ -8,14 +8,14 @@
         </h2>
         <@ elements/your_supervisor_image.php @>
         <div class="w-full flex flex-col justify-center px-2 gap-5 md:col-start-5 md:col-end-12 md:row-start-2 md:row-end-13 md:px-0 md:w-full md:mt-10">
-            <div class="grid gap-5 grid-cols-12 grid-rows-2">
-                <h3 class="text-4xl text-black font-semibold col-start-1 col-end-12 row-start-1 row-end-2">@{ supervisor_name }</h3>
+            <div class="flex flex-row flex-wrap md:grid gap-5 md:grid-cols-12 md:grid-rows-2">
+                <h3 class="grow w-full text-4xl text-black font-semibold md:col-start-1 md:col-end-12 md:row-start-1 md:row-end-2">@{ supervisor_name }</h3>
                 <@ if @{ url_supervisor_linkedin_link } @>
-                    <a class="col-start-12 col-end-13 border-2 rounded-lg border-svj-primary p-1 h-10 w-10 flex justify-center" href="@{ url_supervisor_linkedin_link }" target="_blank">
+                    <a class="order-2 md:col-start-12 md:col-end-13 border-2 rounded-lg border-svj-primary p-1 h-10 w-10 max-h-10 max-w-10 flex justify-center" href="@{ url_supervisor_linkedin_link }" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" class="fill-svj-primary h-full" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
                     </a>
                 <@ end @>
-                <h4 class="text-3xl text-svj-secondary col-start-1 col-end-12 row-start-2 row-end-3">@{ supervisor_title }</h4>
+                <h4 class="grow text-3xl text-svj-secondary md:col-start-1 md:col-end-12 md:row-start-2 md:row-end-3">@{ supervisor_title }</h4>
             </div>
             <div class="flex flex-col gap-5 text-xl md:text-2xl font-thin text-gray-800	">
                 @{ +main }
