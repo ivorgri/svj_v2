@@ -25,6 +25,11 @@
     fill: #EDEAE1;
 }
 
+.am-block a {
+    text-decoration: underline;
+    color: #6096B4;
+}
+
 @tailwind base;
 @tailwind components;
 
