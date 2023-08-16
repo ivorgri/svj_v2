@@ -19,6 +19,9 @@ module.exports = {
       boxShadow: {
         '3xl': '0 8px 6px -6px rgba(0, 0, 0, 0.1)',
       },
+      maxWidth: {
+        '3/4': '75%',
+      },
       spacing: {
         '128': '32rem',
         '30': '7.5rem',
