@@ -6,7 +6,7 @@ hidden: on
 
 -
 
-url: /dashboard
+url: /site_supervisor
 
 -
 

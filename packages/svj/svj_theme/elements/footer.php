@@ -25,5 +25,11 @@
         <@ else @>
             <script src="/packages/@{theme}/js/automatic_redirect.js" async></script>          
         <@ end @>
+        <script>
+            const links = document.querySelectorAll('[href*="://"]');
+            Array.from(links).forEach((link) => {
+                link.setAttribute('target', '_blank');
+            });
+        </script>
     </body>
 </html>
