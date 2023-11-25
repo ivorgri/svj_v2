@@ -34,18 +34,17 @@
             </div>
             <div class="flex flex-col gap-5 text-xl md:text-2xl font-thin text-gray-800	">
                 @{ +main }
-                <ul class="flex flex-col gap-2 pl-5">
-                    <@ newPagelist { 
-                        type: 'children', 
-                        context: '/characteristics' 
-                    } @>
-                    <@ foreach in pagelist @>
-                        <li class="flex flex-row gap-2">
-                            <span>-</span>
-                            <span>@{ title }</span>
-                        </li>
-                    <@ end @>
-                </ul>
+                <@ newPagelist { 
+                    type: 'children', 
+                    context: '@{ url }/registrations' 
+                } @>
+                <@ foreach in pagelist @>
+                    <@ if @{ title } = "CRKBO" @>
+                        <div class="self-center m-6 md:self-end md:m-8">
+                            <@ elements/crkbo_logo.php @>
+                        </div>
+                        <@ end @>
+                <@ end @> 
             </div>
         </div>
         <div class="max-w-max text-white bg-svj-primary px-16 py-10 flex flex-col gap-3.5 shadow-2xl items-center md:p-12 md:col-start-1 md:col-end-5 md:row-start-4 md:row-end-6 md:w-full md:mt-10">
