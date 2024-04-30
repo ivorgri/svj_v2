@@ -1,5 +1,5 @@
 <?php defined('AUTOMAD') or die('Direct access not permitted!'); ?>
-<picture>
+<picture class="w-1/3 md:w-full">
     <source v-for="supervisor_image in supervisor.images"
         :srcset="supervisor_image.file"
         :media="supervisor_image.media"
