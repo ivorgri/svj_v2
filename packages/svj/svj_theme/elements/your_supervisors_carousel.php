@@ -1,7 +1,7 @@
 <?php defined('AUTOMAD') or die('Direct access not permitted!'); ?>
 <div class="w-full md:col-start-1 md:col-end-13 bg-svj-primary flex flex-col p-5 items-center text-white">
     <div id="supervisor-tag-filter" v-scope="SupervisorTagFilter()" class="flex items-center flex-col gap-2"></div>
-    <div id="supervisor-carousel" v-scope="SupervisorCarousel()" class="flex"></div>
+    <div id="supervisor-carousel" v-scope="SupervisorCarousel()"></div>
 
     <template id="supervisor-tag-filter-template">
         <span class="text-2xl underline font-bold">Ik zoek een supervisor voor:</span>
@@ -19,7 +19,7 @@
     <template id="supervisor-carousel-supervisors">
         <ul v-if="store.supervisors.length > 0" class="flex flex-row flex-1 flex-wrap items-center gap-6 justify-center">
             <li v-for="supervisor in store.supervisors" :id="supervisor.name.toLowerCase()"
-                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center w-full md:w-1/4 p-4 md:h-full"
+                class="flex flex-col items-center gap-2 transition transform hover:scale-105 text-center w-full md:w-1/4 p-4 md:h-full self-stretch"
                 :class="store.selectedSupervisorTags.length === 0
                         ? '' 
                         : (
@@ -27,7 +27,7 @@
                             ? 'order-first'
                             : 'order-last'
                         )">
-                <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2">
+                <a :href="'' + supervisor.url" class="flex flex-col items-center gap-2 w-full">
                     <@ your_supervisor_carousel_image.php @>
                     <h3 class="text-5xl">{{ supervisor.name }}</h3>
                     <ul class="flex flex-row flex-wrap gap-2 md:gap-1 justify-center">
